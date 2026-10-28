@@ -102,14 +102,14 @@ async function extractNode(state: typeof TriageState.State) {
   const sys = `당신은 동종조혈모세포이식 후 외래 환자의 증상을 정리하는 이식 전문간호사다. 환자의 구두 설명을 구조화한다.
 환자는 ${p?.name}, 이식후 D+${p ? daysSince(p.transplantDate) : "?"}.
 추가 질문 규칙: 위험도 판단에 꼭 필요한 정보가 빠졌을 때만 최대 2개. 환자가 이미 ${patientTurns}번 답했다. ${
-    patientTurns >= 3 ? "더 묻지 말고 followUpQuestions는 빈 배열로 둔다." : "열 유무, 시작 시점, 악화 여부, 동반 증상 중 빠진 것을 우선 묻는다."
+    patientTurns >= 2 ? "이미 추가로 한 번 답했으니 더 묻지 말고 followUpQuestions는 빈 배열로 둔다." : "열 유무, 시작 시점, 악화 여부, 동반 증상 중 빠진 것을 우선 묻는다."
   }
 질문은 환자가 말로 바로 답할 수 있게 짧고 구체적으로.
 concepts는 지침에서 쓰는 일반 용어로 부위와 증상을 붙여 짧게 쓴다. 예: 귀 불편감, 두통, 발진 확대, 설사 증가, 전신 쇠약, 림프절 부종. 환자의 비유 표현을 그대로 옮기지 않는다.
 ${STYLE_RULES}`;
   const res = await llm.invoke([new SystemMessage(sys), new HumanMessage(`대화 기록:\n${transcriptText(state.turns)}`)]);
   const symptoms = tidyDeep(res);
-  const needMoreInfo = patientTurns < 3 && symptoms.followUpQuestions.length > 0;
+  const needMoreInfo = patientTurns < 2 && symptoms.followUpQuestions.length > 0;
   return {
     symptoms,
     needMoreInfo,

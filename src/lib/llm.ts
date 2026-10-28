@@ -1,6 +1,6 @@
 import { ChatAnthropic } from "@langchain/anthropic";
 
-export const MODEL = "claude-opus-5-5";
+export const MODEL = "claude-sonnet-5-5";
 
 export function makeLLM(opts?: { effort?: "low" | "medium" | "high"; maxTokens?: number }) {
   return new ChatAnthropic({

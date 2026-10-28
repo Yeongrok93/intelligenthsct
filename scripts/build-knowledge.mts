@@ -102,7 +102,7 @@ async function main() {
 
   // 지식그래프. 지침과 외부 문서만 대상
   const kgDocs = docs.filter((d) => d.kind === "guideline" || d.kind === "external");
-  const llm = new ChatAnthropic({ model: "claude-opus-5-5", maxTokens: 4096, outputConfig: { effort: "low" } });
+  const llm = new ChatAnthropic({ model: "claude-sonnet-5-5", maxTokens: 4096, outputConfig: { effort: "low" } });
   const nodes = new Map<string, { id: string; label: string; type: string }>();
   const edges: { source: string; target: string; relation: string; evidence: string }[] = [];
   const seen = new Set<string>();

@@ -17,7 +17,7 @@ const client = new Anthropic();
 async function transcribe(file: string): Promise<string> {
   const data = fs.readFileSync(path.join(pagesDir, file)).toString("base64");
   const res = await client.messages.create({
-    model: "claude-opus-5-5",
+    model: "claude-sonnet-5-5",
     max_tokens: 4096,
     output_config: { effort: "low" },
     messages: [
