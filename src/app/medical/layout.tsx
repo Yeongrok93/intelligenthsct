@@ -38,6 +38,9 @@ export default function MedicalLayout({ children }: { children: React.ReactNode 
             </nav>
           </div>
           <div className="flex items-center gap-3 text-xs text-ink-soft">
+            <Link href="/patient" className="rounded-xl border border-line bg-card px-3 py-1.5 text-sm font-semibold text-ink hover:bg-stone-50">
+              환자 앱으로
+            </Link>
             <AlarmCenter />
             <span className="hidden sm:inline">강영아 전문간호사</span>
             <span className="h-7 w-7 rounded-full bg-brand-soft text-center text-xs font-bold leading-7 text-brand">강</span>
