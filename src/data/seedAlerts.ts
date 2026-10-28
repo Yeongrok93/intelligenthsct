@@ -1,0 +1,157 @@
+// 의료진 대시보드에 처음부터 보이는 알림 예시. 세 사례에 대응한다.
+import type { TriageAlert } from "@/lib/graph/triage";
+
+export const seedAlerts: TriageAlert[] = [
+  {
+    id: "seed-1",
+    patientId: "p1",
+    patientName: "김하늘",
+    level: "yellow",
+    title: "EBV 상승 중 좌측 귀 불편감",
+    createdAt: "2026-10-28T08:40:00+09:00",
+    status: "new",
+    chiefComplaint: "왼쪽 귀에서 시작하는 설명하기 어려운 불편감, 머리를 치는 듯한 짧은 통증 반복",
+    patientMessage:
+      "의료진에게 전화로 확인해주세요. 지금 느끼시는 귀 불편감은 그 자체로는 응급은 아닙니다. 다만 최근 2주 동안 EBV 바이러스 수치가 계속 오르고 있어서, 귀나 턱 주변의 새로운 불편감은 의료진이 직접 진찰해볼 필요가 있습니다. 턱밑이나 목에 만져지는 것이 있는지 오늘 한 번 확인해 주시고, 열이 나면 바로 알려주세요.",
+    sbar: {
+      situation: "D+50 환자가 10/28 아침 좌측 귀에서 시작하는 모호한 불편감과 머리를 치는 듯한 순간 통증을 호소. 발열 없음, 촉지되는 덩어리 없음.",
+      background: "비혈연 이식, ATG 전처치. EBV PCR 10/13 1,200에서 10/27 18,500으로 2주 연속 상승. LDH 412로 상승 추세. CRP 1.8.",
+      assessment: "증상만으로는 green이나 EBV 급상승과 LDH 상승을 결합하면 두경부 PTLD 초기 가능성 배제 불가. yellow.",
+      recommendation: "11/3 외래를 당겨 두경부 진찰과 EBV 재검, 필요 시 경부 CT. 선제 rituximab 기준 충족 여부 검토.",
+    },
+    assessment: {
+      level: "yellow",
+      headline: "모호한 귀 불편감이 EBV 급상승과 겹쳐 PTLD 조기 평가 필요",
+      axes: [
+        { name: "PTLD", risk: "중간", evidence: ["EBV 1,200에서 18,500으로 2주 연속 상승", "LDH 412 상승", "귀 주변 불편감은 두경부 림프절 비대의 초기 징후일 수 있음", "ATG 전처치, 비혈연 공여"] },
+        { name: "감염", risk: "낮음", evidence: ["발열 없음", "ANC 1800", "혈액배양 음성"] },
+        { name: "GVHD", risk: "낮음", evidence: ["피부, 장, 간 징후 없음"] },
+        { name: "기타", risk: "낮음", evidence: ["혈소판 92로 출혈 징후 없음"] },
+      ],
+      labSignals: ["EBV RQ-PCR 18,500 copies/mL, 2주 연속 상승", "LDH 412 IU/L 상승", "림프구 0.6 낮음"],
+      symptomOnlyLevel: "green",
+      whyChanged: "증상은 모호하고 응급 기준에 해당하지 않으나 EBV 추세와 결합하면 외래를 당겨 평가할 근거가 충분",
+    },
+    symptoms: {
+      chiefComplaint: "왼쪽 귀에서 시작하는 설명하기 어려운 불편감",
+      location: "좌측 귀와 머리 측면",
+      character: "누가 머리를 치는 듯한 짧은 파바박 느낌",
+      onset: "2일 전부터",
+      severity: 4,
+      trend: "유지",
+      fever: "없음",
+      associated: [],
+      redFlags: [],
+      concepts: ["귀 주변 불편감", "머리를 치는 듯한 순간 통증"],
+      followUpQuestions: [],
+    },
+    transcript: [
+      { role: "patient", text: "증상을 뭐라고 표현하기가 너무 어려워요. 왼쪽 귀에서부터 시작하는 것 같은데 누가 머리를 꽝 때리는 것처럼 파바박하는 느낌이 있어요." },
+      { role: "assistant", text: "열이 나거나 귀 주변, 턱밑에 부어오르거나 만져지는 덩어리가 있나요?" },
+      { role: "patient", text: "열은 없고 부은 것도 없어요. 이틀 정도 됐어요." },
+    ],
+  },
+  {
+    id: "seed-2",
+    patientId: "p2",
+    patientName: "박서연",
+    level: "green",
+    title: "CMV 결과 확인 후 불안 문의",
+    createdAt: "2026-10-28T07:55:00+09:00",
+    status: "acknowledged",
+    chiefComplaint: "앱에서 CMV 양성 결과를 보고 놀람, 증상 없음",
+    patientMessage:
+      "지금처럼 자가관리 잘해주세요. 어제 검사에서 CMV가 420으로 나왔는데, 이 수치는 치료를 시작하는 기준인 1,000보다 낮고 지난번 310에서 크게 오른 것도 아닙니다. 열이나 설사, 눈앞이 흐려지는 증상이 없다면 예정대로 2주 뒤 재검으로 충분합니다. 걱정되는 증상이 새로 생기면 언제든 다시 말씀해 주세요.",
+    sbar: {
+      situation: "D+120 환자가 앱 결과 확인 후 CMV 양성에 대한 불안으로 문의. 증상 없음.",
+      background: "형제 완전일치 이식, cyclosporine 감량 중. CMV 10/13 310, 10/27 420. 치료 기준 1,000 미만.",
+      assessment: "저농도 안정 추세, 무증상. 선제치료 대상 아님. green.",
+      recommendation: "예정대로 11/10 재검. 환자에게 수치 의미 설명 완료. 추가 조치 불필요.",
+    },
+    assessment: {
+      level: "green",
+      headline: "CMV 저농도 안정, 무증상으로 추적 관찰 유지",
+      axes: [
+        { name: "감염", risk: "낮음", evidence: ["CMV 420 IU/mL, 치료 기준 미만", "2주 전 310에서 소폭 변화", "발열, 설사, 시야 이상 없음", "ANC 2900"] },
+        { name: "GVHD", risk: "낮음", evidence: ["징후 없음"] },
+        { name: "PTLD", risk: "낮음", evidence: ["EBV 미검출"] },
+        { name: "기타", risk: "낮음", evidence: ["Mg 1.6 경도 저하, 보충 중"] },
+      ],
+      labSignals: ["CMV RQ-PCR 420 IU/mL", "CRP 0.2 정상"],
+      symptomOnlyLevel: "green",
+      whyChanged: "동일",
+    },
+    symptoms: {
+      chiefComplaint: "CMV 양성 결과를 보고 불안함",
+      location: "해당 없음",
+      character: "불안",
+      onset: "오늘 아침 앱 확인 후",
+      severity: 1,
+      trend: "유지",
+      fever: "없음",
+      associated: [],
+      redFlags: [],
+      concepts: ["CMV 양성 결과", "불안"],
+      followUpQuestions: [],
+    },
+    transcript: [
+      { role: "patient", text: "앱에서 결과 봤는데 CMV가 양성이라고 떠요. 지난번보다 올랐는데 괜찮은 건가요? 몸은 괜찮아요." },
+    ],
+  },
+  {
+    id: "seed-3",
+    patientId: "p3",
+    patientName: "이준호",
+    level: "yellow",
+    title: "스테로이드 감량 중 발진 확산",
+    createdAt: "2026-10-28T09:10:00+09:00",
+    status: "new",
+    chiefComplaint: "발진이 어제보다 팔과 등으로 번지고 기운이 점점 없음, 설사 하루 4회",
+    patientMessage:
+      "의료진에게 전화로 확인해주세요. 스테로이드를 줄이는 중에 발진이 어제보다 넓어지고 설사가 늘고 기운이 떨어지는 것은 이식편대숙주병이 다시 활발해지는 신호일 수 있습니다. 지금 당장 응급실에 갈 정도는 아니지만 약을 조정해야 할 수 있어 오늘 중 연락이 필요합니다. 체온을 재서 알려주시고, 물을 충분히 드세요.",
+    sbar: {
+      situation: "D+90 환자, 10/26 외래 후 발진이 팔과 등으로 확산, 설사 2회에서 4회로 증가, 전신 쇠약 진행. 발열 없음.",
+      background: "반일치 이식. 급성 피부 GVHD 2단계로 prednisolone 25mg에서 20mg 감량 중. Tacrolimus trough 4.1로 목표 미달. AST 58, ALT 72, T.bil 1.6 상승 추세.",
+      assessment: "스테로이드 감량 중 피부, 장, 간 GVHD 동시 악화 의심. 면역억제제 농도 미달이 기여 가능. yellow이며 악화 시 red.",
+      recommendation: "11/2 외래를 당겨 오늘 내일 중 진료. 스테로이드 증량과 tacrolimus 용량 조정 검토. 복약 순응도 확인. 설사 6회 이상 또는 발열 시 응급실.",
+    },
+    assessment: {
+      level: "yellow",
+      headline: "스테로이드 감량 중 GVHD 재악화 신호, 외래 당겨 약 조정 필요",
+      axes: [
+        { name: "GVHD", risk: "높음", evidence: ["발진 범위 확대", "설사 하루 4회로 증가", "전신 쇠약 진행", "스테로이드 감량 중", "Tacrolimus 4.1 목표 미달", "AST, ALT, 빌리루빈 상승"] },
+        { name: "감염", risk: "중간", evidence: ["발열 없음", "CRP 0.9 경도 상승", "대변배양과 C.difficile 음성"] },
+        { name: "PTLD", risk: "낮음", evidence: ["EBV 미검출"] },
+        { name: "기타", risk: "중간", evidence: ["K 3.4 저하, 설사로 악화 가능"] },
+      ],
+      labSignals: ["Tacrolimus trough 4.1 ng/mL 목표 미달", "T.bil 1.6, AST 58, ALT 72 상승", "K 3.4 낮음"],
+      symptomOnlyLevel: "yellow",
+      whyChanged: "동일하나 면역억제제 농도 미달과 간수치 상승으로 긴급도 상향",
+    },
+    symptoms: {
+      chiefComplaint: "발진이 번지고 기운이 없음",
+      location: "팔, 등, 가슴",
+      character: "붉은 반점, 가려움",
+      onset: "이틀 전부터 번지기 시작",
+      severity: 6,
+      trend: "악화",
+      fever: "없음",
+      associated: ["설사 하루 4회", "전신 쇠약", "식욕 저하"],
+      redFlags: [],
+      concepts: ["발진 확대", "설사 증가", "전신 쇠약", "스테로이드 감량 중"],
+      followUpQuestions: [],
+    },
+    transcript: [
+      { role: "patient", text: "발진이 어제보다 팔하고 등으로 더 번진 것 같아요. 기운도 점점 없고 설사도 하루 네 번 정도 해요." },
+      { role: "assistant", text: "열은 없으신가요? 물집이나 피부가 벗겨지는 곳이 있나요?" },
+      { role: "patient", text: "열은 없어요. 물집은 없고 그냥 붉고 가려워요." },
+    ],
+  },
+];
+
+// 의료진 웹의 알림 재생 버튼에서 쓰는 시나리오
+export const demoScenarios: { name: string; hint: string; alert: TriageAlert }[] = [
+  { name: "EBV 상승 중 모호한 귀 불편감", hint: "D+50, 증상은 모호하나 검사 추세로 PTLD 의심", alert: seedAlerts[0] },
+  { name: "스테로이드 감량 중 발진 확산", hint: "D+90, GVHD 재악화 신호", alert: seedAlerts[2] },
+  { name: "CMV 결과 확인 후 불안 문의", hint: "D+120, 치료 기준 미만으로 안심 안내", alert: seedAlerts[1] },
+];
