@@ -3,6 +3,7 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 import indexJson from "@/data/index.json";
 import { builtinCorpus, type RagDoc } from "@/lib/corpus";
 import { expand, type KgExpansion } from "@/lib/kg";
+import { sourceLabels } from "@/data/sources";
 
 export type { RagDoc } from "@/lib/corpus";
 export { patientContext } from "@/lib/corpus";
@@ -10,14 +11,29 @@ export type RagHit = RagDoc & { score: number; via?: string[] };
 
 type Index = { model: string; docs: (RagDoc & { embedding: number[] })[] };
 const index = indexJson as unknown as Index;
+// 출처는 임베딩과 무관한 메타데이터라 코드의 최신 값을 붙인다
+const builtin = new Map(builtinCorpus().map((d) => [d.id, d]));
+function attachSources(d: RagDoc): RagDoc {
+  const b = builtin.get(d.id);
+  if (b?.sources) return { ...d, sources: b.sources };
+  if (d.id.startsWith("ext-nutrition")) return { ...d, sources: ["amcNutrition"] };
+  if (d.id.startsWith("ext-low_microbial")) return { ...d, sources: ["amcLmd"] };
+  return d;
+}
 const docs: RagDoc[] =
   index.docs.length > 0
     ? index.docs.map((d) => {
         const copy: RagDoc & { embedding?: number[] } = { ...d };
         delete copy.embedding;
-        return copy as RagDoc;
+        return attachSources(copy as RagDoc);
       })
     : builtinCorpus();
+
+// 프롬프트에 넣을 문서 한 건. 제목, 출처, 본문
+export function formatHit(h: RagDoc): string {
+  const src = sourceLabels(h.sources);
+  return `[${h.title}${src.length ? ", 출처: " + src.join("; ") : ""}] ${h.text}`;
+}
 const vectors = new Map<string, number[]>(index.docs.map((d) => [d.id, d.embedding]));
 
 let embedder: OpenAIEmbeddings | null = null;

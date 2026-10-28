@@ -10,6 +10,7 @@ export type RagDoc = {
   title: string;
   text: string;
   source?: string;
+  sources?: string[];
 };
 
 export function patientDocs(p: Patient): RagDoc[] {
@@ -61,6 +62,7 @@ export function guidelineDocs(): RagDoc[] {
     title: `${g.topic}: ${g.title}`,
     text: `${g.title}. ${g.content}`,
     source: g.id.startsWith("x-") ? "보충 지침" : "기본 지침",
+    sources: g.sources ?? [],
   }));
 }
 

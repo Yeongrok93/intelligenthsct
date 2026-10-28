@@ -3,7 +3,7 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { z } from "zod";
 import { makeLLM, STYLE_RULES } from "@/lib/llm";
 import { tidyDeep } from "@/lib/style";
-import { retrieve, patientContext } from "@/lib/rag";
+import { retrieve, patientContext, formatHit } from "@/lib/rag";
 import { getPatient, daysSince } from "@/data/patients";
 
 export const runtime = "nodejs";
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 등급: red는 복용 중단 후 즉시 연락이 필요한 조합. yellow는 복용 전 의료진 확인 필요. green은 그대로 복용 가능.
 환자는 ${p.name}, 이식후 D+${daysSince(p.transplantDate)}.
 ${STYLE_RULES}`;
-  const text = `환자 기록과 본원 복용약:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map((h) => h.text).join("\n\n")}\n\n환자 입력:\n${input || "사진 참조"}`;
+  const text = `환자 기록과 본원 복용약:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map(formatHit).join("\n\n")}\n\n환자 입력:\n${input || "사진 참조"}`;
   const content: ({ type: "text"; text: string } | { type: "image_url"; image_url: { url: string } })[] = [{ type: "text", text }];
   if (image?.startsWith("data:image/")) content.push({ type: "image_url", image_url: { url: image } });
   const res = await llm.invoke([new SystemMessage(sys), new HumanMessage({ content })]);

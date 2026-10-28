@@ -5,11 +5,13 @@ export type GuidelineDoc = {
   topic: string;
   title: string;
   content: string;
+  sources?: string[];
 };
 
 export const guidelines: GuidelineDoc[] = [
   {
     id: "g-emergency",
+    sources: ["freifeld2011", "tomblyn2009", "institutional"],
     topic: "응급기준",
     title: "응급실 방문 기준",
     content: `다음 중 하나라도 해당하면 즉시 응급실로 방문해야 한다.
@@ -25,6 +27,7 @@ export const guidelines: GuidelineDoc[] = [
   },
   {
     id: "g-call",
+    sources: ["harris2016", "styczynski2016", "tomblyn2009", "institutional"],
     topic: "연락기준",
     title: "의료진에게 전화로 확인해야 하는 상황",
     content: `응급기준에는 해당하지 않으나 외래를 당기거나 추가 조치가 필요할 수 있는 상황.
@@ -42,6 +45,7 @@ export const guidelines: GuidelineDoc[] = [
   },
   {
     id: "g-gvhd-acute",
+    sources: ["harris2016"],
     topic: "GVHD",
     title: "급성 이식편대숙주병 징후와 악화 판단",
     content: `급성 GVHD는 주로 피부, 간, 장을 침범한다. 이식 후 100일 이내 흔하나 이후에도 발생한다.
@@ -55,6 +59,7 @@ export const guidelines: GuidelineDoc[] = [
   },
   {
     id: "g-gvhd-chronic",
+    sources: ["jagasia2015"],
     topic: "GVHD",
     title: "만성 이식편대숙주병 징후",
     content: `만성 GVHD는 보통 이식 후 100일 이후에 나타나며 피부 경화, 구강 건조와 궤양, 안구 건조, 관절 구축, 폐 기능 저하, 체중 감소를 보인다.
@@ -63,6 +68,7 @@ export const guidelines: GuidelineDoc[] = [
   },
   {
     id: "g-ptld-ebv",
+    sources: ["styczynski2016", "institutional"],
     topic: "PTLD",
     title: "EBV 재활성화와 이식후림프증식질환",
     content: `EBV 재활성화는 T세포 고갈 전처치인 ATG나 alemtuzumab 사용, 비혈연이나 반일치 공여, 제대혈 이식, 강한 면역억제에서 흔하다.
@@ -73,6 +79,7 @@ PTLD가 의심되면 조직검사, CT, PET으로 확인하고 면역억제제 �
   },
   {
     id: "g-cmv",
+    sources: ["ljungman2019", "institutional"],
     topic: "CMV",
     title: "CMV 재활성화 관리",
     content: `CMV viremia는 이식 후 흔한 감염증으로 외래마다 CMV RQ-PCR로 추적한다.
@@ -84,6 +91,7 @@ Valganciclovir 치료 중에는 백혈구 감소가 생길 수 있어 CBC를 주
   },
   {
     id: "g-infection",
+    sources: ["tomblyn2009", "freifeld2011"],
     topic: "감염",
     title: "이식 후 감염 위험과 시기별 특징",
     content: `면역 재건에는 평균 1년이 걸린다. 퇴원 초기 100일까지는 호중구 회복 후에도 세포성 면역이 낮아 바이러스와 진균 감염 위험이 높다.
@@ -95,6 +103,7 @@ CRP 상승은 감염이나 염증의 지표이나 GVHD에서도 상승할 수 �
   },
   {
     id: "g-diet",
+    sources: ["tomblyn2009", "sonbol2019", "amcNutrition", "amcLmd"],
     topic: "식이",
     title: "이식 후 식이 지침",
     content: `면역억제제 복용 중이거나 이식 후 100일 이내, 또는 ANC 1,000 미만이면 저균식을 유지한다.
@@ -106,6 +115,7 @@ GVHD로 설사가 있을 때는 저지방, 저섬유, 무유당 식이를 권한
   },
   {
     id: "g-drug-interaction",
+    sources: ["christians2002", "rubin2014", "tomblyn2009"],
     topic: "약물상호작용",
     title: "면역억제제와 상호작용하는 흔한 약",
     content: `Tacrolimus와 Cyclosporine은 CYP3A4로 대사되어 상호작용이 많다.
@@ -121,6 +131,7 @@ Mycophenolate: 제산제와 철분제는 흡수를 감소시키므로 2시간 �
   },
   {
     id: "g-vaccine",
+    sources: ["cordonnier2019", "rubin2014", "tomblyn2009"],
     topic: "예방접종",
     title: "이식 후 예방접종 일정",
     content: `이식 후 면역이 소실되므로 재접종이 필요하다.
@@ -132,6 +143,7 @@ Mycophenolate: 제산제와 철분제는 흡수를 감소시키므로 2시간 �
   },
   {
     id: "g-daily",
+    sources: ["majhail2012", "tomblyn2009"],
     topic: "일상생활",
     title: "운동, 복직, 여행, 성생활, 피부와 모발 관리",
     content: `운동: 걷기부터 시작해 하루 20분에서 30분, 숨이 약간 찰 정도. 혈소판 50,000 미만이면 부딪힘 위험 운동 금지. 헬스장은 100일 이후 사람 적은 시간대에. 수영은 면역억제제 중단 후.
@@ -146,6 +158,7 @@ Mycophenolate: 제산제와 철분제는 흡수를 감소시키므로 2시간 �
   },
   {
     id: "g-skin",
+    sources: ["harris2016", "jagasia2015", "tomblyn2009"],
     topic: "피부",
     title: "이식 후 피부 병변 감별",
     content: `GVHD 발진: 손바닥, 발바닥, 귀 뒤, 목, 상체에서 시작하는 붉은 반점과 구진. 대칭적. 가려움. 햇빛 노출 부위에 흔함.

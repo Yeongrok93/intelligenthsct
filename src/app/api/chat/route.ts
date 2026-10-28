@@ -3,7 +3,7 @@ import { AIMessage, HumanMessage, SystemMessage } from "@langchain/core/messages
 import { z } from "zod";
 import { makeLLM, STYLE_RULES } from "@/lib/llm";
 import { tidyDeep } from "@/lib/style";
-import { retrieve, patientContext } from "@/lib/rag";
+import { retrieve, patientContext, formatHit } from "@/lib/rag";
 import { searchPubmed, type PubmedRef } from "@/lib/pubmed";
 import { getPatient, daysSince, TODAY } from "@/data/patients";
 
@@ -14,7 +14,7 @@ type Msg = { role: "user" | "assistant"; text: string };
 
 const Schema = z.object({
   answer: z.string().describe("환자에게 보내는 답. 3문장에서 6문장"),
-  basis: z.array(z.string()).max(3).describe("답의 근거가 된 환자 상태나 지침. 짧게"),
+  basis: z.array(z.string()).max(3).describe("답의 근거가 된 환자 상태나 지침. 지침이면 출처 저자와 연도를 함께. 짧게"),
   escalate: z.boolean().describe("의료진 확인이 필요한 질문이면 true"),
   followUps: z.array(z.string()).max(3).describe("환자가 이어서 물어볼 만한 질문"),
   needsLiterature: z.boolean().describe("본원 지침만으로 답하기 어려워 PubMed 문헌 확인이 필요하면 true"),
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 오늘은 ${TODAY}. 환자는 ${p.name}, 이식후 D+${daysSince(p.transplantDate)}, 다음 외래 ${p.nextVisit}.
 ${STYLE_RULES}`;
   const history = messages.slice(0, -1).slice(-8).map((m) => (m.role === "user" ? new HumanMessage(m.text) : new AIMessage(m.text)));
-  const ctx = `환자 기록:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map((h) => `[${h.title}] ${h.text}`).join("\n\n")}`;
+  const ctx = `환자 기록:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map(formatHit).join("\n\n")}`;
 
   const first = tidyDeep(
     await makeLLM({ effort: "low" })

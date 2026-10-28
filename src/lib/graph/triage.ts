@@ -5,7 +5,7 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { z } from "zod";
 import { makeLLM, STYLE_RULES } from "@/lib/llm";
 import { tidyDeep } from "@/lib/style";
-import { retrieve, patientContext, graphExplain, docsById, type RagHit } from "@/lib/rag";
+import { retrieve, patientContext, graphExplain, docsById, formatHit, type RagHit } from "@/lib/rag";
 import { getPatient, daysSince, TODAY, type RiskLevel } from "@/data/patients";
 
 export type Turn = { role: "patient" | "assistant"; text: string };
@@ -168,10 +168,11 @@ async function assessNode(state: typeof TriageState.State) {
 red는 응급실 즉시 방문. 응급 기준에 해당하거나 생명을 위협할 수 있는 상태.
 yellow는 의료진에게 전화로 확인. 응급은 아니나 외래를 당기거나 약 조정, 추가 검사가 필요할 수 있는 상태. 모호한 증상이라도 검사 추세와 결합하면 의미가 있는 경우 포함.
 green은 지금처럼 자가관리. 검사와 증상 모두 안심할 수 있고 다음 외래까지 기다려도 되는 상태.
+근거 원칙: 각 근거에는 어떤 검사 수치나 지침에서 나온 것인지 밝힌다. 지침에 출처가 붙어 있으면 근거에 출처 저자와 연도를 짧게 쓴다.
 핵심 원칙: 환자가 말로 표현하기 어려운 모호한 증상이라도 EBV나 CMV 추세, 간수치, 면역억제제 농도, 스테로이드 감량 중 여부 같은 맥락과 결합해 판단한다. 증상만 보면 놓칠 수 있는 위험을 검사 데이터로 잡아내는 것이 당신의 역할이다.
 오늘은 ${TODAY}, 환자는 이식후 D+${daysSince(p.transplantDate)}.
 ${STYLE_RULES}`;
-  const ctx = state.context.map((h) => `[${h.title}] ${h.text}`).join("\n\n");
+  const ctx = state.context.map(formatHit).join("\n\n");
   const user = `환자 기본 정보와 최근 기록:\n${patientContext(state.patientId)}\n\n검색된 관련 지침과 기록:\n${ctx}\n\n구조화된 증상:\n${JSON.stringify(
     state.symptoms,
     null,

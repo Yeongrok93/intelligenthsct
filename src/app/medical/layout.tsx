@@ -12,6 +12,7 @@ export default function MedicalLayout({ children }: { children: React.ReactNode 
     { href: "/medical", label: "알림 큐", badge: newCount },
     { href: "/medical/patients", label: "환자 목록" },
     { href: "/medical/knowledge", label: "지식그래프" },
+    { href: "/medical/sources", label: "근거 문서" },
   ];
   return (
     <div className="min-h-dvh bg-paper">

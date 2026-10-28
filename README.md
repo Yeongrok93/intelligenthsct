@@ -29,6 +29,10 @@ LangGraph로 구성했습니다. `src/lib/graph/triage.ts`
 
 LLM에는 제공된 기록과 지침, 문헌에 없는 사실을 만들지 않도록 규칙을 넣었고, 일상생활 상담은 지침에 근거가 없으면 PubMed를 검색해 인용합니다.
 
+## 지침의 출처
+
+요약 지침 25개에는 각각 출처가 붙어 있습니다. `src/data/sources.ts`에 정리했고 `/medical/sources`에서 볼 수 있습니다. 문헌 출처 19편의 PMID는 PubMed에서 확인했습니다. 주요 출처는 Tomblyn 2009 감염 예방 지침, MAGIC 급성 GVHD 병기, NIH 2014 만성 GVHD 합의, ECIL EBV와 CMV와 예방접종 지침, IDSA 호중구감소 발열 지침, Majhail 2012 장기 생존자 권고 등입니다. 지침 본문은 출처를 요약한 교육용 문장이며, EBV와 CMV 선제치료 기준값 같은 구체적 수치는 기관 프로토콜에 맞게 바꿔야 합니다.
+
 ## 실행
 
 ```

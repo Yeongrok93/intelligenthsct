@@ -4,14 +4,10 @@ export default function Landing() {
   return (
     <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-5 py-12">
       <p className="text-sm font-semibold tracking-wide text-brand">조혈모세포이식 센터</p>
-      <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">
-        환자가 말하면, AI가 검사 데이터와 함께 읽고,
-        <br />
-        전문간호사에게 먼저 알립니다
-      </h1>
+      <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">조혈모세포이식 환자를 간호사와 AI가 함께 케어합니다</h1>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-soft">
-        동종조혈모세포이식 후 1년은 면역이 재건되는 시기입니다. 환자가 표현하기 어려운 증상을 음성으로 말하면 AI가 요약하고, 본원의 최근
-        검사 결과와 이식 경과를 결합해 위험도를 분류한 뒤 담당 의료진에게 알립니다.
+        동종조혈모세포이식 후 1년은 면역이 회복되는 중요한 시기입니다. 환자가 말로 전한 증상과 본원의 최근 검사 결과, 이식 경과를 AI가 함께
+        요약하고 위험도를 분류해 전문간호사에게 먼저 알립니다.
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -39,14 +35,7 @@ export default function Landing() {
         </Link>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-dashed border-line p-5 text-sm text-ink-soft">
-        <p className="font-semibold text-ink">판단 파이프라인</p>
-        <p className="mt-2 leading-relaxed">
-          음성 입력 → 증상 추출 → 추가 질문 → 검사 데이터 결합 → 위험도 평가 → 안내문 생성 → 의료진 알림. LangGraph로 구성했고 각 단계의
-          판단 근거를 환자와 의료진 화면에서 모두 볼 수 있습니다.
-        </p>
-        <p className="mt-3 text-xs text-ink-mute">이 프로토타입의 환자와 검사 결과는 모두 가상의 예시입니다.</p>
-      </div>
+      <p className="mt-12 text-center text-lg font-semibold text-black">이 프로토타입의 환자와 검사 결과는 모두 가상의 예시입니다.</p>
     </main>
   );
 }

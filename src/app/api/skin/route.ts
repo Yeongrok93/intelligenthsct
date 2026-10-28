@@ -3,7 +3,7 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { z } from "zod";
 import { makeLLM, STYLE_RULES } from "@/lib/llm";
 import { tidyDeep } from "@/lib/style";
-import { retrieve, patientContext } from "@/lib/rag";
+import { retrieve, patientContext, formatHit } from "@/lib/rag";
 import { getPatient, daysSince } from "@/data/patients";
 
 export const runtime = "nodejs";
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 사진만으로 확진할 수 없음을 전제로 하되 환자가 다음에 무엇을 해야 하는지 분명하게 쓴다.
 환자는 ${p.name}, 이식후 D+${daysSince(p.transplantDate)}.
 ${STYLE_RULES}`;
-  const text = `환자 기록:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map((h) => h.text).join("\n\n")}\n\n환자 설명: ${description || "설명 없음"}`;
+  const text = `환자 기록:\n${patientContext(patientId)}\n\n관련 지침:\n${hits.map(formatHit).join("\n\n")}\n\n환자 설명: ${description || "설명 없음"}`;
   const res = await llm.invoke([
     new SystemMessage(sys),
     new HumanMessage({ content: [{ type: "text", text }, { type: "image_url", image_url: { url: image } }] }),

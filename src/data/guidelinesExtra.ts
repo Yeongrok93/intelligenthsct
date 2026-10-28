@@ -4,6 +4,7 @@ import type { GuidelineDoc } from "./guidelines";
 export const extraGuidelines: GuidelineDoc[] = [
   {
     id: "x-fever",
+    sources: ["freifeld2011"],
     topic: "발열",
     title: "집에서 체온 재는 법과 발열 대처",
     content: `체온은 아침과 저녁 하루 2회, 몸이 이상할 때 추가로 잰다. 겨드랑이보다 고막이나 구강 체온이 정확하다. 체온을 재기 전 30분간 뜨겁거나 찬 음식을 피한다.
@@ -13,6 +14,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-mucositis",
+    sources: ["elad2020", "majhail2012"],
     topic: "구강",
     title: "구강 점막염과 입안 관리",
     content: `부드러운 칫솔로 식후와 취침 전 양치하고, 알코올이 든 가글은 피한다. 생리식염수나 베이킹소다 희석액으로 하루 4회에서 6회 헹군다.
@@ -23,6 +25,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-bleeding",
+    sources: ["kaufman2015"],
     topic: "출혈",
     title: "혈소판 감소와 출혈 예방",
     content: `혈소판 50,000 미만이면 부딪힘이 있는 운동, 과격한 활동, 전기면도기 외의 면도를 피한다. 20,000 미만이면 외래에서 수혈 여부를 결정한다.
@@ -32,6 +35,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-line",
+    sources: ["ogrady2011"],
     topic: "카테터",
     title: "중심정맥관 관리",
     content: `히크만 카테터나 PICC가 있으면 삽입 부위를 매일 살핀다. 붉어짐, 부종, 통증, 분비물, 열감이 있으면 연락한다. 드레싱이 젖거나 떨어지면 교체가 필요하다.
@@ -40,6 +44,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-urine",
+    sources: ["cesaro2018"],
     topic: "비뇨기",
     title: "소변 이상과 출혈성 방광염",
     content: `소변에 피가 섞이거나 소변볼 때 통증, 자주 마려움이 생기면 BK 바이러스에 의한 출혈성 방광염일 수 있다. 이식 후 2개월에서 6개월 사이, 특히 반일치 이식과 cyclophosphamide 사용 후 흔하다.
@@ -48,6 +53,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-resp",
+    sources: ["hirsch2013", "tomblyn2009"],
     topic: "호흡기",
     title: "기침, 호흡곤란, 호흡기 바이러스",
     content: `이식 후 호흡기 바이러스 감염은 폐렴으로 진행할 수 있다. 콧물, 기침, 인후통이 생기면 열이 없어도 외래 전 연락해 검사 여부를 확인한다.
@@ -57,6 +63,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-gi",
+    sources: ["harris2016", "mohty2016", "ljungman2019"],
     topic: "소화기",
     title: "설사, 구역, 복통 관리",
     content: `설사가 하루 3회 이상이면 횟수와 양, 색을 기록한다. 물설사가 하루 500mL 이상이거나 혈변이 섞이면 장 GVHD, CMV 장염, C.difficile 감염 가능성이 있어 연락한다.
@@ -66,6 +73,7 @@ export const extraGuidelines: GuidelineDoc[] = [
   },
   {
     id: "x-immunosuppressant",
+    sources: ["christians2002"],
     topic: "면역억제제",
     title: "면역억제제 복용법과 부작용",
     content: `Tacrolimus와 cyclosporine은 매일 같은 시간에 12시간 간격으로 먹는다. 혈중농도 검사일에는 아침 약을 채혈 후에 먹는다. 농도가 목표보다 낮으면 GVHD 위험, 높으면 신장 손상과 신경독성 위험이 커진다.
@@ -77,6 +85,7 @@ Mycophenolate는 설사와 백혈구 감소를 일으킬 수 있다. 공복에 �
   },
   {
     id: "x-relapse",
+    sources: ["olsson2013"],
     topic: "재발과 생착",
     title: "재발과 생착 부전 징후",
     content: `원인 모를 피로가 심해지고, 멍이 쉽게 들고, 잇몸 출혈이 잦아지고, 뼈 통증이나 야간 발한, 체중 감소가 생기면 외래 검사에서 혈구 수치와 키메리즘을 확인한다.
@@ -85,6 +94,7 @@ Mycophenolate는 설사와 백혈구 감소를 일으킬 수 있다. 공복에 �
   },
   {
     id: "x-mind",
+    sources: ["ullrich2022", "majhail2012"],
     topic: "정서",
     title: "불안, 우울, 수면, 피로",
     content: `이식 후 불안과 우울은 흔하며 회복 과정의 일부다. 2주 이상 지속되는 우울감, 흥미 상실, 불면, 죽고 싶은 생각이 들면 의료진에게 말하고 정신건강 상담을 받는다.
@@ -94,6 +104,7 @@ Mycophenolate는 설사와 백혈구 감소를 일으킬 수 있다. 공복에 �
   },
   {
     id: "x-eye",
+    sources: ["jagasia2015", "ljungman2019"],
     topic: "눈",
     title: "눈 증상과 안구 GVHD",
     content: `눈이 마르고 모래가 들어간 것처럼 따갑고 빛에 예민해지면 안구 GVHD 가능성이 있다. 방부제 없는 인공눈물을 자주 넣고 안과 진료를 받는다.
@@ -102,6 +113,7 @@ Mycophenolate는 설사와 백혈구 감소를 일으킬 수 있다. 공복에 �
   },
   {
     id: "x-local-clinic",
+    sources: ["christians2002", "rubin2014", "tomblyn2009"],
     topic: "연고지 병원",
     title: "동네 병원과 타과 진료 이용 기준",
     content: `열이 없고 전신 상태가 괜찮은 단순 감기, 피부 상처, 치과 검진, 정형외과 통증 같은 문제는 연고지 병원 진료가 가능하다. 진료 시 이식 환자이며 면역억제제를 복용 중임을 반드시 알리고 처방약 목록을 보여준다.
@@ -111,6 +123,7 @@ Mycophenolate는 설사와 백혈구 감소를 일으킬 수 있다. 공복에 �
   },
   {
     id: "x-home-monitoring",
+    sources: ["majhail2012", "tomblyn2009"],
     topic: "자가관리",
     title: "매일 확인할 자가관리 항목",
     content: `매일 아침 체온, 체중, 혈압을 재고 기록한다. 체중이 이틀 사이 2kg 이상 변하면 연락한다.
