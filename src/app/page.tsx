@@ -4,8 +4,8 @@ export default function Landing() {
   return (
     <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-5 py-12">
       <p className="text-sm font-semibold tracking-wide text-brand">조혈모세포이식 센터</p>
-      <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">조혈모세포이식 환자를 간호사와 AI가 함께 케어합니다</h1>
-      <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-soft">
+      <h1 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">조혈모세포이식 후 환자의 합병증 예방 및 일상 관리를 위한 AI 기반 홈케어</h1>
+      <p className="mt-4 max-w-xl text-justify text-base leading-relaxed text-ink-soft">
         동종조혈모세포이식 후 1년은 면역이 회복되는 중요한 시기입니다. 환자가 말로 전한 증상과 본원의 최근 검사 결과, 이식 경과를 AI가 함께
         요약하고 위험도를 분류해 전문간호사에게 먼저 알립니다.
       </p>
