@@ -4,9 +4,9 @@ import { sources, sourceUrl } from "@/data/sources";
 import { Card } from "@/components/ui";
 
 const KIND_STYLE: Record<string, string> = {
-  문헌: "bg-brand-soft text-brand-deep",
-  기관문서: "bg-stone-100 text-ink",
-  확인필요: "bg-risk-yellow-soft text-risk-yellow",
+  문헌: "bg-blue-50 text-blue-700",
+  기관문서: "bg-gray-100 text-gray-800",
+  확인필요: "bg-amber-50 text-amber-700",
 };
 
 export default function SourcesPage() {

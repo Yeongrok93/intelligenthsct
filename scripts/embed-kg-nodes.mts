@@ -22,10 +22,7 @@ export async function embedKgNodes() {
     console.log(`노드 임베딩 ${Math.min(i + 100, targets.length)}/${targets.length}`);
   }
   fs.writeFileSync(file, JSON.stringify(kg));
-  // 화면용 경량본. 벡터를 뺀다
-  const lite = { ...kg, nodes: kg.nodes.map(({ vec: _v, ...n }) => n) };
-  fs.writeFileSync(path.join(root, "src/data/kg-lite.json"), JSON.stringify(lite));
-  console.log(`kg.json 갱신: 임베딩 노드 ${targets.length}개, kg-lite.json 저장`);
+  console.log(`kg.json 갱신: 임베딩 노드 ${targets.length}개`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

@@ -23,7 +23,7 @@ export default function Landing() {
           <p className="mt-4 text-sm font-semibold text-brand group-hover:underline">/patient 열기</p>
         </Link>
         <Link href="/medical" className="group rounded-2xl border border-line bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-stone-100 text-ink">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 text-ink">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 3v18h18" />
               <path d="M7 14l4-4 4 4 5-6" />

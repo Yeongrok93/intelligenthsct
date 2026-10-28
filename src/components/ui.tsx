@@ -30,7 +30,7 @@ export function LevelBanner({ level, children }: { level: RiskLevel; children?: 
 }
 
 export function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border border-line bg-card p-4 shadow-sm ${className}`}>{children}</div>;
+  return <div className={`rounded-lg border border-gray-200 bg-white p-4 ${className}`}>{children}</div>;
 }
 
 export function SectionTitle({ children, sub }: { children: React.ReactNode; sub?: string }) {
@@ -63,7 +63,7 @@ export function Button({
       ? "bg-brand text-white hover:bg-brand-deep"
       : variant === "danger"
         ? "bg-risk-red text-white hover:brightness-95"
-        : "border border-line bg-card text-ink hover:bg-stone-50";
+        : "border border-line bg-card text-ink hover:bg-gray-50";
   return (
     <button type={type} onClick={onClick} disabled={disabled} className={`${base} ${v} ${className}`}>
       {children}

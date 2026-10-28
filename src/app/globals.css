@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --color-ink: #1c1917;
-  --color-ink-soft: #57534e;
-  --color-ink-mute: #a8a29e;
+  --font-sans: "Noto Sans KR", "Noto Sans", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", sans-serif;
+  --color-ink: #111827;
+  --color-ink-soft: #4b5563;
+  --color-ink-mute: #9ca3af;
   --color-paper: #ffffff;
   --color-card: #ffffff;
-  --color-line: #e7e5e4;
-  --color-brand: #0f766e;
-  --color-brand-soft: #ccfbf1;
-  --color-brand-deep: #134e4a;
+  --color-line: #e5e7eb;
+  --color-brand: #2563eb;
+  --color-brand-soft: #eff6ff;
+  --color-brand-deep: #1d4ed8;
   --color-risk-red: #dc2626;
-  --color-risk-red-soft: #fee2e2;
+  --color-risk-red-soft: #fef2f2;
   --color-risk-yellow: #d97706;
-  --color-risk-yellow-soft: #fef3c7;
-  --color-risk-green: #059669;
-  --color-risk-green-soft: #d1fae5;
+  --color-risk-yellow-soft: #fffbeb;
+  --color-risk-green: #16a34a;
+  --color-risk-green-soft: #f0fdf4;
 }
 
 html {
@@ -27,12 +27,7 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
-  letter-spacing: -0.01em;
-}
-
-::selection {
-  background: var(--color-brand-soft);
+  letter-spacing: -0.005em;
 }
 
 @keyframes pulse-ring {
@@ -53,13 +48,3 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .fade-up { animation: fade-up 0.35s ease-out both; }
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.shimmer {
-  background: linear-gradient(90deg, #f0efec 25%, #e5e3df 50%, #f0efec 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-}

@@ -16,7 +16,7 @@ export default function PatientList() {
           const open = mine.filter((a) => a.status !== "done");
           return (
             <Link key={p.id} href={`/medical/patients/${p.id}`}>
-              <Card className="h-full transition hover:shadow-md">
+              <Card className="h-full transition hover:border-gray-400">
                 <p className="text-lg font-bold">
                   {p.name} <span className="text-xs font-normal text-ink-mute">{p.age}세 {p.sex}</span>
                 </p>

@@ -234,7 +234,7 @@ export default function VoiceRecorder({ onTranscript, disabled, prompt }: Props)
       )}
 
       {(recording || interim) && (
-        <div className="min-h-[2.5rem] rounded-xl bg-stone-100 px-3 py-2 text-sm leading-relaxed text-ink-soft">
+        <div className="min-h-[2.5rem] rounded-xl bg-gray-100 px-3 py-2 text-sm leading-relaxed text-ink-soft">
           {interim ? <span className="text-ink">{interim}</span> : <span className="text-ink-mute">말씀하신 내용이 여기 표시됩니다</span>}
         </div>
       )}

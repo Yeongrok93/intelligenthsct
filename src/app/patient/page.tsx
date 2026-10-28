@@ -75,7 +75,7 @@ export default function PatientHome() {
                 </li>
               ))}
             </ul>
-            {latestVirus.note && <p className="mt-2 rounded-xl bg-stone-50 px-3 py-2 text-xs leading-relaxed text-ink-soft">{explainNote(latestVirus.note)}</p>}
+            {latestVirus.note && <p className="mt-2 rounded-xl bg-gray-50 px-3 py-2 text-xs leading-relaxed text-ink-soft">{explainNote(latestVirus.note)}</p>}
           </Card>
         )}
       </div>
@@ -108,7 +108,7 @@ export default function PatientHome() {
           { href: "/patient/meds", t: "다른 병원 약 확인", d: "본원 약과 상호작용" },
           { href: "/patient/chat", t: "일상생활 상담", d: "운동, 복직, 여행, 접종" },
         ].map((x) => (
-          <Link key={x.href} href={x.href} className="rounded-2xl border border-line bg-card p-3 transition hover:bg-stone-50">
+          <Link key={x.href} href={x.href} className="rounded-2xl border border-line bg-card p-3 transition hover:bg-gray-50">
             <p className="text-sm font-bold">{x.t}</p>
             <p className="mt-0.5 text-xs text-ink-mute">{x.d}</p>
           </Link>

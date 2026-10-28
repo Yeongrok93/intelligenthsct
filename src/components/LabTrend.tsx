@@ -42,9 +42,9 @@ export default function LabTrend({ title, points, unit, threshold, thresholdLabe
             </text>
           </>
         )}
-        <path d={d} fill="none" stroke="#0f766e" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+        <path d={d} fill="none" stroke="#2563eb" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
         {points.map((p, i) => (
-          <circle key={p.date} cx={x(i)} cy={y(p.value)} r="3" fill="#0f766e" />
+          <circle key={p.date} cx={x(i)} cy={y(p.value)} r="3" fill="#2563eb" />
         ))}
       </svg>
       <div className="flex justify-between text-[10px] text-ink-mute">

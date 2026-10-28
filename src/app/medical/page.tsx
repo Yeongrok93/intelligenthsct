@@ -38,7 +38,7 @@ export default function MedicalDashboard() {
       </div>
 
       {ready && alerts.some((a) => a.status === "new" && a.level !== "green") && (
-        <div className="mb-4 flex items-center gap-3 rounded-2xl border-2 border-risk-red bg-risk-red-soft px-4 py-3 text-sm font-semibold text-risk-red">
+        <div className="mb-4 flex items-center gap-3 rounded-lg border-2 border-risk-red bg-risk-red-soft px-4 py-3 text-sm font-semibold text-risk-red">
           <span className="relative inline-flex h-3 w-3 rounded-full bg-risk-red pulse-ring" />
           확인이 필요한 알림 {alerts.filter((a) => a.status === "new" && a.level !== "green").length}건이 있습니다
         </div>
@@ -46,7 +46,7 @@ export default function MedicalDashboard() {
 
       <div className="grid gap-3 sm:grid-cols-3">
         {(["red", "yellow", "green"] as RiskLevel[]).map((lv) => (
-          <button key={lv} onClick={() => setFilter(filter === lv ? "open" : lv)} className={`text-left ${filter === lv ? "ring-2 ring-brand" : ""} rounded-2xl`}>
+          <button key={lv} onClick={() => setFilter(filter === lv ? "open" : lv)} className={`text-left ${filter === lv ? "ring-2 ring-brand" : ""} rounded-lg`}>
             <Card>
               <div className="flex items-center justify-between">
                 <RiskBadge level={lv} size="md" />
@@ -66,7 +66,7 @@ export default function MedicalDashboard() {
         ))}
       </div>
 
-      <div className="mt-3 overflow-hidden rounded-2xl border border-line bg-card">
+      <div className="mt-3 overflow-hidden rounded-lg border border-line bg-card">
         {!ready ? (
           <div className="p-6 text-sm text-ink-mute">불러오는 중</div>
         ) : visible.length === 0 ? (
@@ -75,7 +75,7 @@ export default function MedicalDashboard() {
           </div>
         ) : (
           <table className="w-full text-sm">
-            <thead className="bg-stone-50 text-left text-xs text-ink-mute">
+            <thead className="bg-gray-50 text-left text-xs text-ink-mute">
               <tr>
                 <th className="px-4 py-2.5 font-semibold">등급</th>
                 <th className="px-4 py-2.5 font-semibold">환자</th>
@@ -89,7 +89,7 @@ export default function MedicalDashboard() {
               {visible.map((a) => {
                 const p = patients.find((x) => x.id === a.patientId);
                 return (
-                  <tr key={a.id} className={`transition hover:bg-stone-50 ${a.status === "done" ? "opacity-50" : ""}`}>
+                  <tr key={a.id} className={`transition hover:bg-gray-50 ${a.status === "done" ? "opacity-50" : ""}`}>
                     <td className="px-4 py-3">
                       <RiskBadge level={a.level} />
                     </td>
@@ -109,7 +109,7 @@ export default function MedicalDashboard() {
                     <td className="hidden max-w-xs truncate px-4 py-3 text-ink-soft md:table-cell">{a.chiefComplaint}</td>
                     <td className="px-4 py-3 text-xs text-ink-mute">{fmtTime(a.createdAt)}</td>
                     <td className="px-4 py-3">
-                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${a.status === "new" ? "bg-risk-red-soft text-risk-red" : a.status === "acknowledged" ? "bg-stone-100 text-ink-soft" : "bg-risk-green-soft text-risk-green"}`}>
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${a.status === "new" ? "bg-risk-red-soft text-risk-red" : a.status === "acknowledged" ? "bg-gray-100 text-ink-soft" : "bg-risk-green-soft text-risk-green"}`}>
                         {STATUS[a.status]}
                       </span>
                     </td>
@@ -129,7 +129,7 @@ export default function MedicalDashboard() {
             const top = open.sort((a, b) => ORDER[a.level] - ORDER[b.level])[0];
             return (
               <Link key={p.id} href={`/medical/patients/${p.id}`}>
-                <Card className="h-full transition hover:shadow-md">
+                <Card className="h-full transition hover:border-gray-400">
                   <div className="flex items-center justify-between">
                     <p className="font-bold">
                       {p.name} <span className="text-xs font-normal text-ink-mute">{p.age}세 {p.sex}</span>

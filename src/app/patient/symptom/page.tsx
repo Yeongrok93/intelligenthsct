@@ -234,7 +234,7 @@ export default function SymptomPage() {
               )}
               <div className="grid grid-cols-2 gap-2">
                 {result.assessment.axes.map((ax) => (
-                  <div key={ax.name} className="rounded-xl bg-stone-50 p-2.5">
+                  <div key={ax.name} className="rounded-xl bg-gray-50 p-2.5">
                     <p className="text-xs font-bold">
                       {ax.name} <span className={ax.risk === "높음" ? "text-risk-red" : ax.risk === "중간" ? "text-risk-yellow" : "text-risk-green"}>{ax.risk}</span>
                     </p>

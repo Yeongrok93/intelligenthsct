@@ -67,7 +67,7 @@ export default function AlertDetail() {
                 ] as const
               ).map(([k, v]) => (
                 <div key={k} className="grid grid-cols-[4.5rem_1fr] gap-2">
-                  <dt className="font-bold text-brand">{k}</dt>
+                  <dt className="font-bold text-gray-900">{k}</dt>
                   <dd className="leading-relaxed">{v}</dd>
                 </div>
               ))}
@@ -87,7 +87,7 @@ export default function AlertDetail() {
               {a.assessment.whyChanged !== "동일" && <p className="mt-1 text-sm text-ink-soft">{a.assessment.whyChanged}</p>}
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
                 {a.assessment.axes.map((ax) => (
-                  <div key={ax.name} className="rounded-xl bg-stone-50 p-3">
+                  <div key={ax.name} className="rounded-md bg-gray-50 p-3">
                     <p className="text-sm font-bold">
                       {ax.name}{" "}
                       <span className={`text-xs ${ax.risk === "높음" ? "text-risk-red" : ax.risk === "중간" ? "text-risk-yellow" : "text-risk-green"}`}>{ax.risk}</span>
@@ -133,7 +133,7 @@ export default function AlertDetail() {
             <ul className="space-y-2">
               {a.transcript.map((t, i) => (
                 <li key={i} className={`flex ${t.role === "patient" ? "justify-start" : "justify-end"}`}>
-                  <p className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${t.role === "patient" ? "bg-stone-100" : "border border-line bg-card text-ink-soft"}`}>
+                  <p className={`max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed ${t.role === "patient" ? "bg-gray-100" : "border border-line bg-card text-ink-soft"}`}>
                     <span className="mr-1 text-[10px] font-bold text-ink-mute">{t.role === "patient" ? "환자" : "앱"}</span>
                     {t.text}
                   </p>
@@ -181,7 +181,7 @@ export default function AlertDetail() {
               onBlur={(e) => setNote(a.id, e.target.value)}
               rows={4}
               placeholder="전화 내용, 외래 변경, 처방 조정 등을 기록"
-              className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-sm outline-none focus:border-brand"
+              className="w-full rounded-md border border-line bg-paper px-3 py-2 text-sm outline-none focus:border-brand"
             />
             <div className="mt-2 flex flex-wrap gap-1.5">
               {["전화 완료, 증상 설명함", "외래 앞당김", "응급실 내원 안내", "처방 조정 요청"].map((t) => (

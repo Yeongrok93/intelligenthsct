@@ -127,7 +127,7 @@ export default function AlarmCenter() {
       <div className="relative">
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center gap-2 rounded-xl border-2 border-risk-red bg-risk-red-soft px-3 py-1.5 text-sm font-bold text-risk-red transition hover:bg-red-100"
+          className="flex items-center gap-2 rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-blue-700"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
@@ -140,7 +140,7 @@ export default function AlarmCenter() {
             <ul className="mt-2 space-y-1.5">
               {demoScenarios.map((s, i) => (
                 <li key={s.name}>
-                  <button onClick={() => playScenario(i)} className="flex w-full items-center justify-between gap-2 rounded-xl border border-line px-3 py-2 text-left text-sm hover:border-brand hover:bg-stone-50">
+                  <button onClick={() => playScenario(i)} className="flex w-full items-center justify-between gap-2 rounded-xl border border-line px-3 py-2 text-left text-sm hover:border-brand hover:bg-gray-50">
                     <span>
                       <span className="block font-semibold">{s.name}</span>
                       <span className="block text-[11px] text-ink-mute">{s.alert.patientName}, {s.hint}</span>
@@ -159,16 +159,16 @@ export default function AlarmCenter() {
       </div>
 
       {running && (
-        <div className="fixed bottom-5 left-1/2 z-40 w-[min(92vw,26rem)] -translate-x-1/2 rounded-2xl border border-line bg-card p-4 shadow-xl fade-up">
+        <div className="fixed bottom-5 right-4 z-40 max-h-[50vh] w-[min(92vw,26rem)] overflow-hidden rounded-lg border border-gray-300 bg-white p-4 shadow-xl fade-up">
           <div className="flex items-center gap-2 text-sm font-semibold">
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-brand border-t-transparent" />
             {running.name} 수신 중
           </div>
           {running.steps.length > 0 && (
             <ol className="mt-2 space-y-1">
-              {running.steps.map((s, i) => (
-                <li key={i} className="text-xs text-ink-soft">
-                  <span className="font-semibold text-ink">{s.label}</span> {s.summary.slice(0, 80)}
+              {running.steps.slice(-3).map((s, i) => (
+                <li key={i} className="truncate text-xs text-gray-600">
+                  <span className="font-semibold text-gray-900">{s.label}</span> {s.summary.slice(0, 70)}
                 </li>
               ))}
             </ol>
