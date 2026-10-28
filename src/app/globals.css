@@ -3,8 +3,8 @@
 @theme {
   --font-sans: "Noto Sans KR", "Noto Sans", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", sans-serif;
   --color-ink: #111827;
-  --color-ink-soft: #4b5563;
-  --color-ink-mute: #9ca3af;
+  --color-ink-soft: #111827;
+  --color-ink-mute: #1f2937;
   --color-paper: #ffffff;
   --color-card: #ffffff;
   --color-line: #e5e7eb;

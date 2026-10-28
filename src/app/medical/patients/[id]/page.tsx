@@ -18,64 +18,64 @@ export default function PatientDetail() {
 
   return (
     <div>
-      <Link href="/medical/patients" className="text-xs text-ink-mute hover:underline">
+      <Link href="/medical/patients" className="text-sm hover:underline">
         ← 환자 목록
       </Link>
       <h1 className="mt-2 text-2xl font-bold">
-        {p.name} <span className="text-base font-normal text-ink-mute">{p.age}세 {p.sex}</span>
+        {p.name} <span className="text-base font-normal text-ink">{p.age}세 {p.sex}</span>
       </h1>
-      <p className="text-sm text-ink-soft">
+      <p className="text-base text-ink">
         {p.diagnosis}, {p.transplantType}, 이식일 {p.transplantDate}, D+{daysSince(p.transplantDate)}
       </p>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">이식 정보</p>
-            <dl className="grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2">
-              <dt className="text-ink-mute">공여자</dt>
+            <p className="mb-2 text-sm font-bold">이식 정보</p>
+            <dl className="grid grid-cols-[6rem_1fr] gap-x-4 gap-y-1.5 text-base">
+              <dt className="font-semibold">공여자</dt>
               <dd>{p.donor}</dd>
-              <dt className="text-ink-mute">전처치</dt>
+              <dt className="font-semibold">전처치</dt>
               <dd>{p.conditioning}</dd>
-              <dt className="text-ink-mute">GVHD 예방</dt>
+              <dt className="font-semibold">GVHD 예방</dt>
               <dd>{p.gvhdProphylaxis}</dd>
-              <dt className="text-ink-mute">현재 문제</dt>
+              <dt className="font-semibold">현재 문제</dt>
               <dd>{p.currentIssues.join(", ")}</dd>
-              <dt className="text-ink-mute">다음 외래</dt>
+              <dt className="font-semibold">다음 외래</dt>
               <dd>{p.nextVisit}</dd>
             </dl>
           </Card>
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">검사 결과</p>
+            <p className="mb-2 text-sm font-bold">검사 결과</p>
             <div className="space-y-3">
               {labsByDate.map((lab) => (
                 <div key={lab.category + lab.date}>
-                  <p className="text-xs font-bold">
-                    {lab.date} <span className="text-ink-mute">{lab.category}</span>
+                  <p className="text-sm font-bold">
+                    {lab.date} <span className="font-normal">{lab.category}</span>
                   </p>
                   <div className="mt-1 flex flex-wrap gap-1.5">
                     {lab.items.map((i) => (
-                      <span key={i.name} className={`rounded-lg border px-2 py-1 text-xs ${i.flag === "H" ? "border-risk-yellow/40 bg-risk-yellow-soft" : i.flag === "L" ? "border-sky-200 bg-sky-50" : "border-line bg-card"}`}>
-                        <span className="text-ink-mute">{i.name}</span> <span className="font-semibold">{i.value}</span> {i.unit}
+                      <span key={i.name} className={`rounded-md border px-2 py-1 text-sm ${i.flag === "H" ? "border-risk-yellow/40 bg-risk-yellow-soft" : i.flag === "L" ? "border-sky-200 bg-sky-50" : "border-line bg-card"}`}>
+                        {i.name} <span className="font-bold">{i.value}</span> {i.unit}
                       </span>
                     ))}
                   </div>
-                  {lab.note && <p className="mt-1 text-xs text-ink-soft">{lab.note}</p>}
+                  {lab.note && <p className="mt-1.5 text-sm leading-relaxed">{lab.note}</p>}
                 </div>
               ))}
             </div>
           </Card>
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">진료 기록</p>
-            <ul className="space-y-2 text-sm">
+            <p className="mb-2 text-sm font-bold">진료 기록</p>
+            <ul className="divide-y divide-line">
               {p.visits.map((v) => (
-                <li key={v.date} className="grid grid-cols-[5.5rem_1fr] gap-2">
-                  <span className="text-xs text-ink-mute">
+                <li key={v.date} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2 first:pt-0 last:pb-0">
+                  <span className="whitespace-nowrap text-base font-semibold">
                     {v.date} {v.type}
                   </span>
-                  <span className="leading-relaxed">{v.summary}</span>
+                  <span className="text-base leading-relaxed">{v.summary}</span>
                 </li>
               ))}
             </ul>
@@ -84,27 +84,27 @@ export default function PatientDetail() {
 
         <div className="space-y-4">
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">바이러스 추세</p>
+            <p className="mb-2 text-sm font-bold">바이러스 추세</p>
             <div className="space-y-2">
-              {ebv.some((x) => x.value > 0) ? <LabTrend title="EBV RQ-PCR" points={ebv} unit="copies/mL" threshold={10000} thresholdLabel="10,000" /> : <p className="text-xs text-ink-mute">EBV 미검출</p>}
-              {cmv.some((x) => x.value > 0) ? <LabTrend title="CMV RQ-PCR" points={cmv} unit="IU/mL" threshold={1000} thresholdLabel="1,000" /> : <p className="text-xs text-ink-mute">CMV 미검출</p>}
+              {ebv.some((x) => x.value > 0) ? <LabTrend title="EBV RQ-PCR" points={ebv} unit="copies/mL" threshold={10000} thresholdLabel="10,000" /> : <p className="text-sm">EBV 미검출</p>}
+              {cmv.some((x) => x.value > 0) ? <LabTrend title="CMV RQ-PCR" points={cmv} unit="IU/mL" threshold={1000} thresholdLabel="1,000" /> : <p className="text-sm">CMV 미검출</p>}
             </div>
           </Card>
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">복용약</p>
-            <ul className="space-y-1 text-xs">
+            <p className="mb-2 text-sm font-bold">복용약</p>
+            <ul className="space-y-1.5 text-sm">
               {p.medications.map((m) => (
                 <li key={m.name}>
                   <span className="font-semibold">{m.name}</span> {m.dose}
-                  <span className="text-ink-mute">, {m.purpose}</span>
+                  <span className="block text-sm">{m.purpose}</span>
                 </li>
               ))}
             </ul>
           </Card>
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">알림 이력</p>
+            <p className="mb-2 text-sm font-bold">알림 이력</p>
             {mine.length === 0 ? (
-              <p className="text-xs text-ink-mute">없음</p>
+              <p className="text-sm">없음</p>
             ) : (
               <ul className="space-y-2">
                 {mine.map((a) => (
@@ -113,7 +113,7 @@ export default function PatientDetail() {
                       <span className="truncate">{a.title}</span>
                       <RiskBadge level={a.level} />
                     </Link>
-                    <p className="text-[11px] text-ink-mute">{fmtTime(a.createdAt)}</p>
+                    <p className="text-xs">{fmtTime(a.createdAt)}</p>
                   </li>
                 ))}
               </ul>

@@ -32,7 +32,7 @@ export default function MedicalDashboard() {
           <h1 className="text-2xl font-bold">알림 큐</h1>
           <p className="text-sm text-ink-soft">환자 앱에서 들어온 증상 보고를 위험도순으로 보여줍니다</p>
         </div>
-        <button onClick={reset} className="text-xs text-ink-mute underline">
+        <button onClick={reset} className="text-sm text-ink-mute underline">
           데모 상태 초기화
         </button>
       </div>
@@ -52,7 +52,7 @@ export default function MedicalDashboard() {
                 <RiskBadge level={lv} size="md" />
                 <span className="text-3xl font-bold">{ready ? count(lv) : ""}</span>
               </div>
-              <p className="mt-2 text-xs text-ink-mute">{lv === "red" ? "응급실 안내가 나간 건" : lv === "yellow" ? "전화 확인이 필요한 건" : "기록용으로 들어온 건"}</p>
+              <p className="mt-2 text-sm text-ink-mute">{lv === "red" ? "응급실 안내가 나간 건" : lv === "yellow" ? "전화 확인이 필요한 건" : "기록용으로 들어온 건"}</p>
             </Card>
           </button>
         ))}
@@ -75,7 +75,7 @@ export default function MedicalDashboard() {
           </div>
         ) : (
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-left text-xs text-ink-mute">
+            <thead className="bg-gray-50 text-left text-sm text-ink-mute">
               <tr>
                 <th className="px-4 py-2.5 font-semibold">등급</th>
                 <th className="px-4 py-2.5 font-semibold">환자</th>
@@ -97,7 +97,7 @@ export default function MedicalDashboard() {
                       <Link href={`/medical/alerts/${a.id}`} className="font-semibold hover:underline">
                         {a.patientName}
                       </Link>
-                      <p className="text-xs text-ink-mute">
+                      <p className="text-sm text-ink-mute">
                         {p ? `D+${daysSince(p.transplantDate)}` : ""} {p?.diagnosis}
                       </p>
                     </td>
@@ -107,7 +107,7 @@ export default function MedicalDashboard() {
                       </Link>
                     </td>
                     <td className="hidden max-w-xs truncate px-4 py-3 text-ink-soft md:table-cell">{a.chiefComplaint}</td>
-                    <td className="px-4 py-3 text-xs text-ink-mute">{fmtTime(a.createdAt)}</td>
+                    <td className="px-4 py-3 text-sm text-ink-mute">{fmtTime(a.createdAt)}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${a.status === "new" ? "bg-risk-red-soft text-risk-red" : a.status === "acknowledged" ? "bg-gray-100 text-ink-soft" : "bg-risk-green-soft text-risk-green"}`}>
                         {STATUS[a.status]}
@@ -132,14 +132,14 @@ export default function MedicalDashboard() {
                 <Card className="h-full transition hover:border-gray-400">
                   <div className="flex items-center justify-between">
                     <p className="font-bold">
-                      {p.name} <span className="text-xs font-normal text-ink-mute">{p.age}세 {p.sex}</span>
+                      {p.name} <span className="text-sm font-normal text-ink-mute">{p.age}세 {p.sex}</span>
                     </p>
-                    {top ? <RiskBadge level={top.level} /> : <span className="text-xs text-ink-mute">알림 없음</span>}
+                    {top ? <RiskBadge level={top.level} /> : <span className="text-sm text-ink-mute">알림 없음</span>}
                   </div>
-                  <p className="mt-1 text-xs text-ink-soft">
+                  <p className="mt-1 text-sm text-ink-soft">
                     {p.diagnosis}, D+{daysSince(p.transplantDate)}
                   </p>
-                  <ul className="mt-2 space-y-0.5 text-xs text-ink-soft">
+                  <ul className="mt-2 space-y-0.5 text-sm text-ink-soft">
                     {p.currentIssues.map((i) => (
                       <li key={i}>{i}</li>
                     ))}

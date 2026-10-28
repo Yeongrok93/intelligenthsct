@@ -18,20 +18,20 @@ export default function PatientList() {
             <Link key={p.id} href={`/medical/patients/${p.id}`}>
               <Card className="h-full transition hover:border-gray-400">
                 <p className="text-lg font-bold">
-                  {p.name} <span className="text-xs font-normal text-ink-mute">{p.age}세 {p.sex}</span>
+                  {p.name} <span className="text-sm font-normal text-ink-mute">{p.age}세 {p.sex}</span>
                 </p>
-                <p className="text-xs text-ink-soft">
+                <p className="text-sm text-ink-soft">
                   {p.diagnosis}, {p.transplantType}
                 </p>
                 <p className="mt-2 text-sm">
-                  D+{daysSince(p.transplantDate)} <span className="text-xs text-ink-mute">다음 외래 {p.nextVisit}</span>
+                  D+{daysSince(p.transplantDate)} <span className="text-sm text-ink-mute">다음 외래 {p.nextVisit}</span>
                 </p>
-                <ul className="mt-2 space-y-0.5 text-xs text-ink-soft">
+                <ul className="mt-2 space-y-0.5 text-sm text-ink-soft">
                   {p.currentIssues.map((i) => (
                     <li key={i}>{i}</li>
                   ))}
                 </ul>
-                <div className="mt-3 flex items-center gap-2 text-xs text-ink-mute">
+                <div className="mt-3 flex items-center gap-2 text-sm text-ink-mute">
                   알림 {mine.length}건, 처리 전 {open.length}건
                   {open[0] && <RiskBadge level={open[0].level} />}
                 </div>

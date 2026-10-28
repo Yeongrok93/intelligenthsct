@@ -21,17 +21,17 @@ export default function AlertDetail() {
 
   return (
     <div>
-      <Link href="/medical" className="text-xs text-ink-mute hover:underline">
+      <Link href="/medical" className="text-sm hover:underline">
         ← 알림 큐
       </Link>
       <div className="mt-2 flex flex-wrap items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
             <RiskBadge level={a.level} size="md" />
-            <span className="text-xs text-ink-mute">{fmtTime(a.createdAt)}</span>
+            <span className="text-sm">{fmtTime(a.createdAt)}</span>
           </div>
           <h1 className="mt-2 text-2xl font-bold">{a.title}</h1>
-          <p className="text-sm text-ink-soft">
+          <p className="text-base">
             <Link href={`/medical/patients/${p.id}`} className="font-semibold text-ink hover:underline">
               {p.name}
             </Link>{" "}
@@ -56,7 +56,7 @@ export default function AlertDetail() {
       <div className="mt-5 grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">SBAR 요약</p>
+            <p className="mb-2 text-sm font-bold">SBAR 요약</p>
             <dl className="space-y-2.5 text-sm">
               {(
                 [
@@ -84,7 +84,7 @@ export default function AlertDetail() {
                 <RiskBadge level={a.assessment.level} />
               </div>
               <p className="text-sm font-semibold">{a.assessment.headline}</p>
-              {a.assessment.whyChanged !== "동일" && <p className="mt-1 text-sm text-ink-soft">{a.assessment.whyChanged}</p>}
+              {a.assessment.whyChanged !== "동일" && <p className="mt-1 text-sm">{a.assessment.whyChanged}</p>}
               <div className="mt-3 grid gap-2 sm:grid-cols-2">
                 {a.assessment.axes.map((ax) => (
                   <div key={ax.name} className="rounded-md bg-gray-50 p-3">
@@ -92,7 +92,7 @@ export default function AlertDetail() {
                       {ax.name}{" "}
                       <span className={`text-xs ${ax.risk === "높음" ? "text-risk-red" : ax.risk === "중간" ? "text-risk-yellow" : "text-risk-green"}`}>{ax.risk}</span>
                     </p>
-                    <ul className="mt-1 space-y-0.5 text-xs leading-relaxed text-ink-soft">
+                    <ul className="mt-1 space-y-0.5 text-sm leading-relaxed">
                       {ax.evidence.map((e, i) => (
                         <li key={i}>{e}</li>
                       ))}
@@ -102,8 +102,8 @@ export default function AlertDetail() {
               </div>
               {a.kgPaths && a.kgPaths.length > 0 && (
                 <div className="mt-3">
-                  <p className="text-xs font-semibold text-ink-mute">지식그래프 경로</p>
-                  <ul className="mt-1 space-y-0.5 text-xs text-ink-soft">
+                  <p className="text-sm font-bold">지식그래프 경로</p>
+                  <ul className="mt-1 space-y-0.5 text-sm">
                     {a.kgPaths.map((pth, i) => (
                       <li key={i}>{pth}</li>
                     ))}
@@ -111,11 +111,11 @@ export default function AlertDetail() {
                 </div>
               )}
               {a.contextTitles && a.contextTitles.length > 0 && (
-                <p className="mt-3 text-[11px] text-ink-mute">검색된 근거: {a.contextTitles.join(", ")}</p>
+                <p className="mt-3 text-sm">검색된 근거: {a.contextTitles.join(", ")}</p>
               )}
               {a.assessment.labSignals.length > 0 && (
                 <div className="mt-3">
-                  <p className="text-xs font-semibold text-ink-mute">판단에 쓴 검사 신호</p>
+                  <p className="text-sm font-bold">판단에 쓴 검사 신호</p>
                   <ul className="mt-1 flex flex-wrap gap-1.5">
                     {a.assessment.labSignals.map((s, i) => (
                       <li key={i} className="rounded-full border border-line bg-card px-2.5 py-1 text-xs">
@@ -129,7 +129,7 @@ export default function AlertDetail() {
           )}
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">환자 대화 원문</p>
+            <p className="mb-2 text-sm font-bold">환자 대화 원문</p>
             <ul className="space-y-2">
               {a.transcript.map((t, i) => (
                 <li key={i} className={`flex ${t.role === "patient" ? "justify-start" : "justify-end"}`}>
@@ -143,15 +143,15 @@ export default function AlertDetail() {
           </Card>
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">환자에게 전달된 안내</p>
+            <p className="mb-2 text-sm font-bold">환자에게 전달된 안내</p>
             <p className="text-sm font-semibold">{LEVEL_LABEL[a.level]}</p>
-            <p className="mt-1 text-sm leading-relaxed text-ink-soft">{a.patientMessage}</p>
+            <p className="mt-1 text-sm leading-relaxed">{a.patientMessage}</p>
           </Card>
         </div>
 
         <div className="space-y-4">
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">검사 추세</p>
+            <p className="mb-2 text-sm font-bold">검사 추세</p>
             <div className="space-y-2">
               {ebv.some((x) => x.value > 0) && <LabTrend title="EBV RQ-PCR" points={ebv} unit="copies/mL" threshold={10000} thresholdLabel="선제치료 고려 10,000" />}
               {cmv.some((x) => x.value > 0) && <LabTrend title="CMV RQ-PCR" points={cmv} unit="IU/mL" threshold={1000} thresholdLabel="선제치료 1,000" />}
@@ -164,8 +164,8 @@ export default function AlertDetail() {
           </Card>
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">현재 약</p>
-            <ul className="space-y-0.5 text-xs">
+            <p className="mb-2 text-sm font-bold">현재 약</p>
+            <ul className="space-y-1 text-sm">
               {p.medications.map((m) => (
                 <li key={m.name}>
                   <span className="font-semibold">{m.name}</span> {m.dose}
@@ -175,7 +175,7 @@ export default function AlertDetail() {
           </Card>
 
           <Card>
-            <p className="mb-2 text-xs font-semibold text-ink-mute">처리 메모</p>
+            <p className="mb-2 text-sm font-bold">처리 메모</p>
             <textarea
               defaultValue={notes[a.id] ?? ""}
               onBlur={(e) => setNote(a.id, e.target.value)}

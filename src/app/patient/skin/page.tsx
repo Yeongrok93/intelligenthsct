@@ -2,7 +2,9 @@
 import { useState } from "react";
 import PatientHeader from "@/components/PatientHeader";
 import PhotoInput from "@/components/PhotoInput";
-import { Button, Card, LevelBanner, Spinner } from "@/components/ui";
+import { Button, Card, LevelBanner } from "@/components/ui";
+import ProgressSteps, { type Status } from "@/components/ProgressSteps";
+import { readNdjson } from "@/lib/ndjson";
 import { usePatient } from "@/lib/patientSelection";
 import { addAlert } from "@/lib/alertsStore";
 import type { RiskLevel } from "@/data/patients";
@@ -23,6 +25,7 @@ export default function SkinPage() {
   const [image, setImage] = useState<string | null>(null);
   const [desc, setDesc] = useState("");
   const [busy, setBusy] = useState(false);
+  const [statuses, setStatuses] = useState<Status[]>([]);
   const [res, setRes] = useState<Res | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -31,10 +34,16 @@ export default function SkinPage() {
     setBusy(true);
     setErr(null);
     setRes(null);
+    setStatuses([]);
     try {
       const r = await fetch("/api/skin", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ patientId: patient.id, image, description: desc }) });
-      const data = (await r.json()) as Res & { error?: string };
-      if (!r.ok) throw new Error(data.error ?? "오류");
+      const box: { data: Res | null } = { data: null };
+      await readNdjson<{ type: string } & Partial<Status> & Partial<Res>>(r, (ev) => {
+        if (ev.type === "status") setStatuses((s) => [...s, { label: ev.label ?? "", hints: ev.hints }]);
+        else if (ev.type === "done") box.data = ev as unknown as Res;
+      });
+      if (!box.data) throw new Error("결과를 받지 못했습니다");
+      const data = box.data;
       setRes(data);
       if (data.level !== "green") {
         addAlert({
@@ -73,8 +82,13 @@ export default function SkinPage() {
         className="mt-3 w-full rounded-xl border border-line bg-card px-3 py-2.5 text-sm outline-none focus:border-brand"
       />
       <Button onClick={submit} disabled={!image || busy} className="mt-3 w-full">
-        {busy ? <Spinner label="사진을 살펴보는 중" /> : "확인 요청"}
+        {busy ? "확인 중" : "확인 요청"}
       </Button>
+      {busy && (
+        <div className="mt-3">
+          <ProgressSteps statuses={statuses} />
+        </div>
+      )}
       {err && <p className="mt-2 text-sm text-risk-red">{err}</p>}
 
       {res && (
