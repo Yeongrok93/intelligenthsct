@@ -6,7 +6,7 @@ const tabs = [
   { href: "/patient", label: "홈", icon: "M3 11l9-8 9 8v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z" },
   { href: "/patient/symptom", label: "증상", icon: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3ZM19 10v2a7 7 0 0 1-14 0v-2M12 19v3" },
   { href: "/patient/skin", label: "피부", icon: "M4 7h3l2-3h6l2 3h3v12H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" },
-  { href: "/patient/food", label: "식단", icon: "M3 11h18M5 11a7 7 0 0 1 14 0M4 15h16M7 19h10" },
+  { href: "/patient/food", label: "음식", icon: "M3 11h18M5 11a7 7 0 0 1 14 0M4 15h16M7 19h10" },
   { href: "/patient/meds", label: "약", icon: "M10.5 3.5l10 10-7 7-10-10zM7 17l-3 3M13 7l4 4" },
   { href: "/patient/chat", label: "상담", icon: "M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z" },
 ];

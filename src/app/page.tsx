@@ -19,7 +19,7 @@ export default function Landing() {
             </svg>
           </div>
           <h2 className="mt-4 text-lg font-bold">환자 앱</h2>
-          <p className="mt-1 text-sm text-ink-soft">증상 말하기, 피부 사진, 식단 확인, 타원 처방약 확인, 일상생활 상담</p>
+          <p className="mt-1 text-sm text-ink-soft">증상 말하기, 피부 사진, 음식 확인, 타원 처방약 확인, 일상생활 상담</p>
           <p className="mt-4 text-sm font-semibold text-brand group-hover:underline">/patient 열기</p>
         </Link>
         <Link href="/medical" className="group rounded-2xl border border-line bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
