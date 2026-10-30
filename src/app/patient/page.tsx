@@ -14,6 +14,7 @@ export default function PatientHome() {
   const latestCbc = patient.labs.find((l) => l.category === "CBC");
   const anc = latestCbc?.items.find((i) => i.name === "ANC");
   const plt = latestCbc?.items.find((i) => i.name === "PLT");
+  const hb = latestCbc?.items.find((i) => i.name === "Hb");
   const untilVisit = daysSince(TODAY, patient.nextVisit);
 
   return (
@@ -50,7 +51,7 @@ export default function PatientHome() {
 
       <div className="mt-5">
         <SectionTitle sub="본원 검사 결과를 쉬운 말로 풀어드립니다">최근 검사</SectionTitle>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-3 gap-2">
           <Card>
             <p className="text-xs text-ink-mute">호중구 ANC</p>
             <p className="text-lg font-bold">{anc?.value}</p>
@@ -60,6 +61,11 @@ export default function PatientHome() {
             <p className="text-xs text-ink-mute">혈소판 PLT</p>
             <p className="text-lg font-bold">{plt?.value}</p>
             <p className="text-xs text-ink-soft">{Number(plt?.value) >= 50 ? "일상생활 가능" : "부딪힘 주의"}</p>
+          </Card>
+          <Card>
+            <p className="text-xs text-ink-mute">혈색소 Hb</p>
+            <p className="text-lg font-bold">{hb?.value}</p>
+            <p className="text-xs text-ink-soft">{Number(hb?.value) >= 10 ? "안정적인 범위" : "빈혈 주의"}</p>
           </Card>
         </div>
         {latestVirus && (

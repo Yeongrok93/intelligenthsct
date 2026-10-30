@@ -179,11 +179,11 @@ export default function SymptomPage() {
 
           {result.outputs.patientActions.length > 0 && (
             <Card>
-              <p className="mb-2 text-xs font-semibold text-ink-mute">지금 할 일</p>
-              <ul className="space-y-1.5">
+              <p className="mb-2 text-sm font-bold">지금 할 일</p>
+              <ul className="space-y-2">
                 {result.outputs.patientActions.map((a, i) => (
-                  <li key={i} className="flex gap-2 text-sm">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                  <li key={i} className="flex gap-2 text-base leading-relaxed">
+                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                     {a}
                   </li>
                 ))}
